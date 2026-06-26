@@ -1,7 +1,6 @@
 """"
 main.py - głowny plik uruchomieniowy aplikacji
 
-
 """
 import sys
 from PySide6.QtWidgets import QApplication

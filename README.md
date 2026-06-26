@@ -4,14 +4,19 @@ Projekt zaliczeniowy z przedmiotu Projektowanie Oprogramowania Systemów. Semest
 
 Ta sekcja dotyczy aplikacji oraz GUI Test Controller.
 
-Aplikacja została stworzona za pomocą frameworku PySide6. Aktualnie składa się z dwóch plików - main.py oraz main_window.py
+Aplikacja została stworzona za pomocą frameworku PySide6. Aktualnie składa się z trzech plików:
 
-main.py słuzy do wywołania głównego okna
-main_window.py to statyczny model GUI reprezentujący układ i działanie aplikacji
+main.py - słuzy do wywołania głównego okna
+main_window.py - to statyczny model GUI reprezentujący układ i działanie aplikacji
+style.py - kolory i style dla main_window
 
 Aby uruchomić:
+
+
     % python3 venv .venv
+
     % pip install -r requirements.txt
+
     % python main.py
 
 

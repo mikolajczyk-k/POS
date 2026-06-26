@@ -5,12 +5,15 @@ Zawiera wszystkie elementy okna głównego (baner statusu, pasek etapów, przyci
 
 """
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QFont
+from PySide6.QtGui import QFont, QColor
 from PySide6.QtWidgets import (
     QMainWindow, QWidget, QPushButton, QLabel, QVBoxLayout, QHBoxLayout,
     QTableView, QTextEdit, QCheckBox, QHeaderView, QSizePolicy,
     QTableWidget, QTableWidgetItem, QAbstractItemView,
 )
+
+from ui.style import STYLE, Color
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -32,12 +35,17 @@ class MainWindow(QMainWindow):
         lbl_results.setObjectName("section")
         root.addWidget(lbl_results)
         root.addWidget(self._build_table(), stretch=2)
- 
 
+        lbl_log = QLabel("Komunikaty")
+        lbl_log.setObjectName("section")
+        root.addWidget(lbl_log)
+        root.addWidget(self._build_log(), stretch=1)
  
         self.setCentralWidget(central)
- 
 
+        self.setStyleSheet(STYLE)
+
+ 
 
     def _build_banner(self) -> QLabel:
         """Duży baner statusu u góry okna."""
@@ -78,6 +86,8 @@ class MainWindow(QMainWindow):
         self.abort_btn = QPushButton("Abort")
         self.abort_btn.setObjectName("abort")
         self.export_btn = QPushButton("Eksportuj raport CSV")
+        self.export_btn.setObjectName("export")
+        self.export_btn.setEnabled(False)  # aktywne dopiero po zakończeniu testów
  
         for b in (self.start_btn, self.abort_btn, self.export_btn):
             b.setMinimumHeight(40)
@@ -112,6 +122,11 @@ class MainWindow(QMainWindow):
             table.setItem(r, 0, QTableWidgetItem(test))
             item = QTableWidgetItem(result)
             item.setTextAlignment(Qt.AlignCenter)
+            # Zielony dla pass czerwony dla fail
+            if result == "PASS":
+                item.setBackground(QColor(Color.PASS))
+            elif result == "FAIL":
+                item.setBackground(QColor(Color.FAIL))
             table.setItem(r, 1, item)
             table.setItem(r, 2, QTableWidgetItem(detail))
             t_item = QTableWidgetItem(t)
@@ -120,4 +135,16 @@ class MainWindow(QMainWindow):
  
         self.table = table
         return table
+    
+
+    def _build_log(self) -> QTextEdit:
+        """Okno komunikatów"""
+        log = QTextEdit()
+        log.setReadOnly(True)
+        log.setObjectName("log")
+        log.setPlainText(
+            "[12:00:00]  Aplikacja uruchomiona.\n"
+            "[12:00:00]  Oczekiwanie na podłączenie testera...")
+        self.log = log
+        return log
  
