@@ -7,7 +7,9 @@ Ta sekcja dotyczy aplikacji oraz GUI Test Controller.
 Aplikacja została stworzona za pomocą frameworku PySide6. Aktualnie składa się z trzech plików:
 
 main.py - słuzy do wywołania głównego okna
+
 main_window.py - to statyczny model GUI reprezentujący układ i działanie aplikacji
+
 style.py - kolory i style dla main_window
 
 Aby uruchomić:
