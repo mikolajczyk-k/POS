@@ -8,7 +8,7 @@ from PySide6.QtCore import Qt
 from PySide6.QtGui import QFont, QColor
 from PySide6.QtWidgets import (
     QMainWindow, QWidget, QPushButton, QLabel, QVBoxLayout, QHBoxLayout,
-    QTableView, QTextEdit, QCheckBox, QHeaderView, QSizePolicy,
+    QTextEdit, QHeaderView, QSizePolicy,
     QTableWidget, QTableWidgetItem, QAbstractItemView,
 )
 
